@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ý Nguyễn — Risk Management Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--black:#0f0f0f;--white:#fff;
+  --bg:#f5f4f1;--border:#e0deda;
+  --mid:#555;--light:#999;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--black);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto;z-index:99;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--black);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);text-decoration:none}
+.nav-links a:hover{color:var(--gold)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.burger span{display:block;width:22px;height:1.5px;background:var(--black)}
+.drawer{display:none;position:fixed;top:56px;inset-inline:0;background:var(--white);border-bottom:1px solid var(--border);z-index:98;flex-direction:column}
+.drawer a{display:block;padding:14px 20px;font-size:14px;font-weight:500;color:var(--black);text-decoration:none;border-bottom:1px solid var(--border)}
+.drawer.open{display:flex}
+@media(max-width:720px){.burger{display:flex}.nav-links{display:none}}
+
+/* SHARED */
+.sec{padding:56px 20px}
+.sec.gray{background:var(--bg)}
+.wrap{max-width:960px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+h2{font-family:var(--serif);font-size:clamp(28px,6vw,42px);font-weight:700;line-height:1.1;letter-spacing:-.02em;color:var(--black);margin-bottom:28px}
+h2 i{color:var(--gold)}
+.center{text-align:center}
+
+/* HERO */
+#hero{min-height:100svh;display:grid;align-content:center;padding:72px 20px 20px 20px;gap:20px}
+.hero-left{display:flex;flex-direction:column;justify-content:center}
+.hero-tag{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--gold);flex-shrink:0}
+.hero-name{font-family:var(--serif);font-size:clamp(60px,15vw,96px);font-weight:700;line-height:.92;letter-spacing:-.03em;color:var(--black);margin-bottom:12px}
+.hero-name i{color:var(--gold);font-style:normal}
+.hero-creds{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.hero-desc{font-size:15px;color:var(--mid);line-height:1.6;max-width:500px;margin-bottom:20px}
+.hero-right{display:flex;justify-content:center;align-items:center}
+.headshot{width:100%;max-width:360px;aspect-ratio:4/5;object-fit:cover;border-radius:12px;box-shadow:0 20px 40px -15px rgba(0,0,0,0.15);}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none}
+.btn-g{background:var(--gold);color:var(--white)}
+.btn-g:hover{background:#b8963e}
+.btn-o{background:transparent;color:var(--black);border:1.5px solid var(--black)}
+.btn-o:hover{background:var(--black);color:var(--white)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.stat{background:var(--bg);padding:14px 12px;border-left:2px solid var(--gold)}
+.stat-n{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--gold);line-height:1.2}
+.stat-l{font-size:11px;color:var(--light);margin-top:4px;line-height:1.3}
+@media(min-width:720px){#hero{grid-template-columns:1fr 1fr;align-items:center;padding:100px 48px 30px 48px;gap:48px}}
+
+/* ABOUT */
+.about-text p{font-size:15px;color:var(--mid);line-height:1.8;margin-bottom:14px}
+
+/* SKILLS - UPDATED WITH NEW ORDER AND DESCRIPTIONS */
+.skills-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:20px}
+.skill-card{background:var(--white);border:1px solid var(--border);padding:20px 16px;text-align:center;transition:all 0.2s}
+.skill-card:hover{border-color:var(--gold);box-shadow:0 4px 12px rgba(0,0,0,0.02)}
+.skill-icon{font-size:32px;line-height:1;margin-bottom:12px;color:var(--gold)}
+.skill-card-title{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px;line-height:1.3}
+.skill-card-desc{font-size:12px;color:var(--mid);line-height:1.5}
+@media(max-width:720px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.skills-grid{grid-template-columns:1fr}}
+
+/* EXPERIENCE */
+.timeline{position:relative;display:flex;flex-direction:column;gap:0px}
+.timeline-item{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:20px 0;border-bottom:1px solid var(--border);position:relative}
+.timeline-item:last-child{border-bottom:none}
+.timeline-date{font-size:12px;font-weight:500;color:var(--gold);letter-spacing:.02em;line-height:1.4;padding-top:2px}
+.timeline-content .exp-title{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:4px}
+.timeline-content .exp-co{font-size:13px;font-weight:600;color:var(--black);margin-bottom:6px}
+.timeline-content .exp-desc{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:8px}
+@media(max-width:600px){.timeline-item{grid-template-columns:1fr;gap:6px}.timeline-date{font-weight:600}}
+
+/* CERTIFICATIONS */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:16px}
+.cert{background:var(--white);border:1px solid var(--border);overflow:hidden}
+.cert-bar{height:3px;background:var(--gold)}
+.cert-body{padding:20px 18px;position:relative}
+.cert-icon{font-size:40px;line-height:1;margin-bottom:12px;color:var(--gold)}
+.cert-abbr{font-family:var(--serif);font-size:26px;font-weight:700;margin-bottom:2px}
+.cert-full{font-size:12px;font-weight:600;color:var(--gold);margin-bottom:2px}
+.cert-issuer{font-size:11px;color:var(--light);margin-bottom:8px}
+.cert-desc{font-size:13px;color:var(--mid);line-height:1.6}
+.edu{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--border);padding:18px}
+.edu-icon{font-size:32px;line-height:1;flex-shrink:0;color:var(--gold)}
+.edu-deg{font-family:var(--serif);font-size:17px;font-weight:700}
+.edu-prog{font-size:12px;font-weight:600;color:var(--gold);margin-top:2px}
+.edu-school{font-size:13px;color:var(--mid);margin-top:1px}
+
+/* LEADERSHIP */
+.lead-grid{display:grid;gap:14px;margin-bottom:20px}
+@media(min-width:600px){.lead-grid{grid-template-columns:1fr 1fr}}
+.lead{background:var(--white);border:1px solid var(--border);padding:20px 18px}
+.lead-org{font-family:var(--serif);font-size:19px;font-weight:700;margin-bottom:2px}
+.lead-role{font-size:12px;color:var(--gold);font-weight:500;margin-bottom:4px}
+.lead-date{font-size:11px;color:var(--light);margin-bottom:10px}
+.lead ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.lead li{font-size:13px;color:var(--mid);line-height:1.6;padding-left:12px;position:relative}
+.lead li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:11px}
+.wins{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:600px){.wins{grid-template-columns:repeat(4,1fr)}}
+.win{background:var(--white);border:1px solid var(--border);padding:14px;text-align:center}
+.win-val{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--gold);line-height:1.3;margin-bottom:4px}
+.win-desc{font-size:12px;color:var(--mid);line-height:1.4}
+
+/* CONTACT */
+#contact{background:var(--black);padding:56px 20px}
+#contact .eyebrow{color:var(--gold)}
+#contact h2{color:var(--white)}
+#contact h2 i{color:var(--gold)}
+.contact-grid{display:grid;gap:40px}
+@media(min-width:720px){.contact-grid{grid-template-columns:1fr 1fr;gap:64px;align-items:start}}
+.c-items{display:flex;flex-direction:column;gap:14px;margin-bottom:0}
+.ci{display:flex;align-items:center;gap:12px}
+.ci-icon{width:34px;height:34px;background:rgba(201,168,76,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-icon svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.5}
+.ci-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.ci-val{font-size:14px;color:rgba(255,255,255,.7);text-decoration:none}
+.ci-val:hover{color:var(--gold)}
+.form{display:flex;flex-direction:column;gap:12px}
+.frow{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+@media(max-width:480px){.frow{grid-template-columns:1fr}}
+.flbl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);display:block;margin-bottom:5px}
+.fi,.ft{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);font-family:var(--sans);font-size:14px;padding:11px 13px;outline:none}
+.fi:focus,.ft:focus{border-color:var(--gold)}
+.fi::placeholder,.ft::placeholder{color:rgba(255,255,255,.2)}
+.ft{resize:vertical;min-height:100px}
+
+/* FOOTER */
+footer{background:#080808;padding:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.06)}
+.flogo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--white);text-decoration:none}
+.flogo span{color:var(--gold)}
+.fcopy{font-size:12px;color:rgba(255,255,255,.25)}
+.flinks{display:flex;gap:8px}
+.flink{width:30px;height:30px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;text-decoration:none;color:rgba(255,255,255,.35)}
+.flink:hover{border-color:var(--gold);color:var(--gold)}
+.flink svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.fade.in{opacity:1;transform:none}
+</style>
+
+<nav>
+  <a href="#hero" class="logo">Ý<span></span>Nguyễn</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="drawer" id="drawer">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#experience" onclick="closeMenu()">Experience</a>
+  <a href="#certifications" onclick="closeMenu()">Certifications</a>
+  <a href="#leadership" onclick="closeMenu()">Leadership</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left fade">
+    <h1 class="hero-name">Ý<br>Nguyễn</h1>
+    <p class="hero-creds">CPA, CA · CIA · CSSCP</p>
+    <p class="hero-desc">Chartered Accountant and Certified Internal Auditor with deep progressive experience building risk and audit functions at the intersection of technology, emerging risks, and sustainability.</p>
+    <p class="hero-desc">I partner with executives as a strategic thinker and hands-on enabler—designing programs from inception, reporting directly to Boards and Audit Committees, and translating complexity into action. I help organizations scan the horizon for known and unknown risks, strengthen governance across jurisdictions, and scale with guardrails.</p>
+    <div class="btns">
+      <a href="#contact" class="btn btn-g">Get In Touch</a>
+      <a href="https://www.linkedin.com/in/ynguyenca" target="_blank" class="btn btn-o">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-right fade" style="transition-delay:.12s">
+    <!-- REPLACE THIS URL WITH YOUR GITHUB IMAGE URL -->
+    <img src="[YOUR-IMAGE-URL-HERE]" alt="Ý Nguyễn" class="headshot">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="wrap" style="margin-top:0; margin-bottom:30px;">
+  <div class="stats fade" style="transition-delay:.18s; padding:0 20px;">
+    <div class="stat"><div class="stat-n">25+ Years</div><div class="stat-l">Building & Bettering</div></div>
+    <div class="stat"><div class="stat-n">De Novo Expert</div><div class="stat-l">Functions from scratch</div></div>
+    <div class="stat"><div class="stat-n">Force Multiplier</div><div class="stat-l">Strategic enabler</div></div>
+    <div class="stat"><div class="stat-n">Microsoft Finalist</div><div class="stat-l">2024 Sustainability Changemaker</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="sec gray">
+  <div class="wrap">
+    <p class="eyebrow fade">About</p>
+    <h2 class="fade">Building Functions.<br><i>Enabling Leaders.</i></h2>
+    <div class="about-text">
+      <p class="fade">I am a Chartered Accountant and Certified Internal Auditor who builds and betters risk, audit, and strategic functions at the intersection of technology, emerging risks, and sustainability. I have built new practices from the ground up, bettered existing ones under regulatory scrutiny, and served as a trusted strategic partner to executives, Boards, and Audit Committees.</p>
+      <p class="fade">My work sits at the crossroads of strategy and execution. I design first-time programs, establish scalable infrastructure, and roll up my sleeves to get things done. I report directly to leadership, challenge constructively, and translate complex risks into clear, actionable insights. I am both a strategic thinker and a hands-on enabler—a force multiplier for executives and Boards navigating complexity.</p>
+      <p class="fade">I help organizations of all sizes and maturities scan the horizon for known and unknown risks, strengthen governance across jurisdictions, and scale with guardrails while keeping pace with innovation. I apply deep technical rigor with business practicality to help leaders move faster, smarter, and safer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS - UPDATED WITH NEW ORDER AND DESCRIPTIONS -->
+<section id="skills" class="sec">
+  <div class="wrap">
+    <p class="eyebrow center fade">Competencies</p>
+    <h2 class="center fade">Areas of Expertise</h2>
+    <div class="skills-grid fade">
+      <div class="skill-card"><div class="skill-icon">📋</div><div class="skill-card-title">Internal Audit Program Design</div><div class="skill-card-desc">Risk-based audit planning and program development</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-card-title">Audit Committee Reporting</div><div class="skill-card-desc">Board-level reporting on risk, controls, and actionable insights</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🏛️</div><div class="skill-card-title">Regulatory Expertise</div><div class="skill-card-desc">Deep understanding of regulatory expectations</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">💰</div><div class="skill-card-title">Financial Services</div><div class="skill-card-desc">Banks · FinTech · Specialty Lending</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🎯</div><div class="skill-card-title">Enterprise Risk Management</div><div class="skill-card-desc">ERM framework development and implementation</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🤝</div><div class="skill-card-title">Third-Party Risk Management</div><div class="skill-card-desc">Third/fourth-party risk mitigation and supply chain optimization</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🔍</div><div class="skill-card-title">External Audit Oversight</div><div class="skill-card-desc">Co-sourced and outsourced audit management</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">💻</div><div class="skill-card-title">IT & Operational Controls</div><div class="skill-card-desc">Technology and operational control frameworks</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🏃</div><div class="skill-card-title">Pre-IPO Readiness</div><div class="skill-card-desc">Control design and remediation for public offerings</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🌱</div><div class="skill-card-title">Sustainability & ESG</div><div class="skill-card-desc">ESG frameworks and sustainability reporting</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🔥</div><div class="skill-card-title">Business Continuity</div><div class="skill-card-desc">BCM program design to ISO 22301 standards</div></div>
+      
+      <div class="skill-card"><div class="skill-icon">🔧</div><div class="skill-card-title">Control Remediation</div><div class="skill-card-desc">Control design and effectiveness remediation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="sec gray">
+  <div class="wrap">
+    <p class="eyebrow center fade">Experience</p>
+    <h2 class="center fade">Career Journey</h2>
+    <div class="timeline">
+      <div class="timeline-item fade">
+        <div class="timeline-date">2023 – 2025</div>
+        <div class="timeline-content">
+          <div class="exp-title">National Sustainability Practice Lead</div>
+          <div class="exp-co">BDO Canada LLP</div>
+          <div class="exp-desc">Built a new national sustainability technology consulting practice from scratch. Led the team to become a 2024 Finalist for Microsoft's Global Sustainability Changemaker of the Year award.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2022 – 2023</div>
+        <div class="timeline-content">
+          <div class="exp-title">Senior Manager, Sustainability and Risk Advisory</div>
+          <div class="exp-co">BDO Canada LLP · Toronto</div>
+          <div class="exp-desc">Strategic Risk Advisory role for multinational and SMB clients, with a focus on integrating technology, emerging risks, and regulatory compliance.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2020 – 2022</div>
+        <div class="timeline-content">
+          <div class="exp-title">Practice Lead, Risk Management & BCM</div>
+          <div class="exp-co">NorthFind Management Consulting</div>
+          <div class="exp-desc">Built and led a new risk management practice from the ground up. Advised Canadian and US clients on operational resilience, third-party risk, and regulatory preparedness across multiple regions.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2016 – 2019</div>
+        <div class="timeline-content">
+          <div class="exp-title">Senior Manager, Internal Audit</div>
+          <div class="exp-co">Home Trust Company · Toronto</div>
+          <div class="exp-desc">Senior leadership within the internal audit function for a federally regulated special lending bank, ensuring adherence to OSFI guidelines, Privacy (PIPEDA/GDPR), AML (FINTRAC), and Trust and Loan Companies Act requirements.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2015 – 2016</div>
+        <div class="timeline-content">
+          <div class="exp-title">Internal Controls Consultant</div>
+          <div class="exp-co">HomEquity Bank · Toronto</div>
+          <div class="exp-desc">Internal controls and operational risk expert for a public Canadian lender that scaled rapidly from private lender to IPO. Served as strategic partner to Finance, Legal, and Compliance leadership.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2014</div>
+        <div class="timeline-content">
+          <div class="exp-title">Director, Independence & Risk Advisory</div>
+          <div class="exp-co">Deloitte LLP · Toronto</div>
+          <div class="exp-desc">Firm-wide risk leadership role ensuring compliance with professional and ethical standards.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2013 – 2014</div>
+        <div class="timeline-content">
+          <div class="exp-title">Director, Internal Audit QAIP</div>
+          <div class="exp-co">CIBC · Toronto</div>
+          <div class="exp-desc">Led the audit quality assurance function governing CIBC's global internal audit departments, ensuring adherence to COSO, IIA International Standards and federal regulatory expectations.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2008 – 2012</div>
+        <div class="timeline-content">
+          <div class="exp-title">Assistant Internal Audit Manager</div>
+          <div class="exp-co">CITCO Fund Services · Toronto & Caribbean</div>
+          <div class="exp-desc">Conducted operational audits for a global hedge fund administrator across multiple international jurisdictions. Collaborated with IT audit to design and execute integrated audits of proprietary financial systems.</div>
+        </div>
+      </div>
+      <div class="timeline-item fade">
+        <div class="timeline-date">2001 – 2008</div>
+        <div class="timeline-content">
+          <div class="exp-title">Manager, Assurance & Advisory</div>
+          <div class="exp-co">Ernst & Young LLP · Toronto</div>
+          <div class="exp-desc">Built foundational career in external audit and internal control reviews within a Big 4 firm, specializing in regulated financial services. Progressed from Co-op Student to Senior Staff Accountant to Manager.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="sec">
+  <div class="wrap">
+    <p class="eyebrow center fade">Credentials</p>
+    <h2 class="center fade">Certifications & Education</h2>
+    <div class="certs">
+      <div class="cert fade">
+        <div class="cert-bar"></div>
+        <div class="cert-body">
+          <div class="cert-icon">🏆</div>
+          <div class="cert-abbr">CPA, CA</div>
+          <div class="cert-full">Chartered Professional Accountant</div>
+          <div class="cert-issuer">CPA Ontario · Active</div>
+          <div class="cert-desc">Highest standard of competence in the Canadian accounting profession.</div>
+        </div>
+      </div>
+      <div class="cert fade" style="transition-delay:.07s">
+        <div class="cert-bar"></div>
+        <div class="cert-body">
+          <div class="cert-icon">✅</div>
+          <div class="cert-abbr">CIA</div>
+          <div class="cert-full">Certified Internal Auditor</div>
+          <div class="cert-issuer">Institute of Internal Auditors · Active</div>
+          <div class="cert-desc">Global certification in risk management, control, and governance.</div>
+        </div>
+      </div>
+      <div class="cert fade" style="transition-delay:.14s">
+        <div class="cert-bar"></div>
+        <div class="cert-body">
+          <div class="cert-icon">🌱</div>
+          <div class="cert-abbr">CSSCP</div>
+          <div class="cert-full">Certified Sustainable Supply Chain Professional</div>
+          <div class="cert-issuer">ISCEA · Active</div>
+          <div class="cert-desc">Sustainable supply chain practices and ESG framework implementation.</div>
+        </div>
+      </div>
+    </div>
+    <div class="edu fade">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <div class="edu-deg">Honours Bachelor of Arts</div>
+        <div class="edu-prog">Chartered Accountancy Co-op</div>
+        <div class="edu-school">University of Waterloo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="sec gray">
+  <div class="wrap">
+    <p class="eyebrow center fade">Impact</p>
+    <h2 class="center fade">Thought Leadership</h2>
+    <div class="lead-grid">
+      <div class="lead fade">
+        <div class="lead-org">ISCEA</div>
+        <div class="lead-role">Program Director, International Standards Board & Sustainability Council Member</div>
+        <div class="lead-date">2021 – Present</div>
+        <ul>
+          <li>Architected and deployed the first international Sustainable Supply Chain Audit Framework (IISB26)</li>
+          <li>Authored and launched the global CSSCA accreditation program</li>
+        </ul>
+      </div>
+      <div class="lead fade" style="transition-delay:.07s">
+        <div class="lead-org">Published Author & Speaker</div>
+        <div class="lead-role">Industry Recognition</div>
+        <div class="lead-date">Ongoing</div>
+        <ul>
+          <li>Automotive News Canada</li>
+          <li>Supply & Demand Chain Executive</li>
+          <li>Canadian Franchise Association</li>
+          <li>SupplyChain Canada</li>
+        </ul>
+      </div>
+    </div>
+    <div class="wins fade">
+      <div class="win"><div class="win-val">Microsoft Global Finalist</div><div class="win-desc">2024 Sustainability Changemaker</div></div>
+      <div class="win"><div class="win-val">First-of-Its-Kind</div><div class="win-desc">IISB26 Audit Framework</div></div>
+      <div class="win"><div class="win-val">Practice Builder</div><div class="win-desc">Led national consulting practice</div></div>
+      <div class="win"><div class="win-val">Global Reach</div><div class="win-desc">Canada · US · Caribbean</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow fade">Get In Touch</p>
+    <h2 class="fade">Let's <i>Connect</i></h2>
+    <div class="contact-grid">
+      <div class="c-items fade">
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="ci-lbl">
