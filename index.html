@@ -426,4 +426,50 @@ footer{background:#080808;padding:20px;display:flex;align-items:center;justify-c
       <div class="c-items fade">
         <div class="ci">
           <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+
           <div><div class="ci-lbl">
+                     <div><div class="ci-lbl">Email</div><a href="mailto:ynguyen.ca@gmail.com" class="ci-val">ynguyen.ca@gmail.com</a></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="ci-lbl">LinkedIn</div><a href="https://www.linkedin.com/in/ynguyenca" target="_blank" class="ci-val">linkedin.com/in/ynguyenca</a></div>
+        </div>
+      </div>
+      <form class="form fade" style="transition-delay:.1s" onsubmit="handleSubmit(event)">
+        <div class="frow">
+          <div><label class="flbl">Name</label><input type="text" class="fi" placeholder="Your name" required></div>
+          <div><label class="flbl">Email</label><input type="email" class="fi" placeholder="your@email.com" required></div>
+        </div>
+        <div><label class="flbl">Subject</label><input type="text" class="fi" placeholder="What would you like to discuss?"></div>
+        <div><label class="flbl">Message</label><textarea class="ft" placeholder="Your message..."></textarea></div>
+        <button type="submit" class="btn btn-g" style="width:100%;justify-content:center">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a href="#hero" class="flogo">Ý<span></span>Nguyễn</a>
+  <p class="fcopy">© 2026 Ý Nguyễn</p>
+  <div class="flinks">
+    <a href="mailto:ynguyen.ca@gmail.com" class="flink"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/></svg></a>
+    <a href="https://www.linkedin.com/in/ynguyenca" target="_blank" class="flink"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+  },{threshold:0.08});
+  document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+  function toggleMenu(){document.getElementById('drawer').classList.toggle('open')}
+  function closeMenu(){document.getElementById('drawer').classList.remove('open')}
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const btn=e.target.querySelector('button');
+    btn.textContent='✓ Sent!';btn.style.background='#2a7a4b';
+    setTimeout(()=>{btn.textContent='Send Message';btn.style.background='';e.target.reset()},3000);
+  }
+</script>
